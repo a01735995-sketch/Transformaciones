@@ -1,0 +1,51 @@
+name: Pruebas
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    name: Linux / GCC
+    runs-on: ubuntu-latest
+    env:
+      CC: gcc
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Compilar y comprobar transformaciones
+        run: make test
+      - name: Comprobar generador y benchmark completo
+        run: |
+          python scripts/generar_imagenes.py --count 2 --width 13 --height 9 --top-down
+          python benchmark_transformaciones.py --count 2 --threads 1 2 --repetitions 2 --warmups 1
+
+  windows:
+    name: Windows / GCC UCRT64
+    runs-on: windows-latest
+    env:
+      CC: gcc
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: msys2/setup-msys2@v2.33.0
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            make
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-python
+      - name: Compilar y comprobar transformaciones
+        run: make test PYTHON=python
+      - name: Comprobar generador y benchmark completo
+        run: |
+          python scripts/generar_imagenes.py --count 2 --width 13 --height 9 --top-down
+          python benchmark_transformaciones.py --count 2 --threads 1 2 --repetitions 2 --warmups 1

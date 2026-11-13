@@ -1,0 +1,9 @@
+* text=auto
+*.c text eol=lf
+*.h text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+Makefile text eol=lf
+*.bat text eol=crlf
+# Preservar byte por byte los archivos recibidos en el ZIP.
+original/** -text -whitespace

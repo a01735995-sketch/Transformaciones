@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+*.exe
+*.o
+*.out
+.venv/
+.vscode/
+*.xcodeproj/
+/build/*
+!/build/.gitkeep
+/output/*
+!/output/.gitkeep
+/results/*
+!/results/.gitkeep
+/images/input/*.bmp
