@@ -42,6 +42,7 @@ jobs:
           install: >-
             make
             mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-libgomp
             mingw-w64-ucrt-x86_64-python
       - name: Compilar y comprobar transformaciones
         run: make test PYTHON=python

@@ -17,7 +17,7 @@ cd Transformaciones
 2. Abre **MSYS2 UCRT64** e instala el compilador:
 
 ```bash
-pacman -S --needed mingw-w64-ucrt-x86_64-gcc
+pacman -S --needed mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-libgomp
 ```
 
 3. Instala Python 3.11 o posterior y habilita su acceso desde `PATH`.
@@ -31,7 +31,7 @@ New-Item -ItemType Directory -Force build | Out-Null
 gcc -std=c17 -O2 -Wall -Wextra -fopenmp bench_mark_transformaciones.c -o build\transformaciones_bench.exe
 ```
 
-Si instalaste MSYS2 en otra carpeta, cambia la ruta. Mantén `ucrt64\bin` en `PATH` durante la ejecución para que Windows encuentre las bibliotecas de GCC y OpenMP.
+Si instalaste MSYS2 en otra carpeta, cambia la ruta. Mantén `ucrt64\bin` en `PATH` durante la ejecución para que Windows encuentre las bibliotecas de GCC y OpenMP. El paquete `libgomp` proporciona OpenMP y se instala expresamente porque puede ser una dependencia opcional del compilador.
 
 Prueba rápida:
 
@@ -126,6 +126,6 @@ python3 benchmark_transformaciones.py --threads 1 5 10 --repetitions 10
 | `-isystem`, `-L`, `-lomp` | Localizar cabeceras y biblioteca OpenMP en macOS |
 | `-Wl,-rpath,...` | Encontrar `libomp` al ejecutar en macOS |
 
-Referencias: [entornos de MSYS2](https://www.msys2.org/docs/environments/), [libomp en Homebrew](https://formulae.brew.sh/formula/libomp).
+Referencias: [entornos de MSYS2](https://www.msys2.org/docs/environments/), [libgomp para UCRT64](https://packages.msys2.org/packages/mingw-w64-ucrt-x86_64-libgomp), [libomp en Homebrew](https://formulae.brew.sh/formula/libomp).
 
 Siguiente paso: [Uso y comandos](https://github.com/a01735995-sketch/Transformaciones/wiki/Uso-y-comandos).

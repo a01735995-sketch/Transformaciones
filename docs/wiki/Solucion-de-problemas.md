@@ -8,6 +8,16 @@ Comprueba `gcc --version` y `python --version` en la misma terminal donde ejecut
 
 Mantén el directorio `ucrt64\bin` en `PATH` mientras se ejecuta el programa. No basta con localizar `gcc` durante la compilación; Windows también debe encontrar sus bibliotecas al arrancar el ejecutable.
 
+## `cannot find -lgomp` al compilar en Windows
+
+Instala también el paquete de OpenMP desde MSYS2 UCRT64:
+
+```bash
+pacman -S --needed mingw-w64-ucrt-x86_64-libgomp
+```
+
+GCC puede instalarse sin esta dependencia opcional. El paquete proporciona la biblioteca de enlace y `libgomp-1.dll`.
+
 ## `omp.h` no se encuentra en macOS
 
 Instala `libomp` y recompila con el Makefile:

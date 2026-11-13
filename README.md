@@ -27,7 +27,7 @@ Los comandos siguientes se ejecutan desde la carpeta raíz del proyecto.
 Instala [MSYS2](https://www.msys2.org/) y Python 3.11+. En la terminal **MSYS2 UCRT64**, instala GCC:
 
 ```bash
-pacman -S --needed mingw-w64-ucrt-x86_64-gcc
+pacman -S --needed mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-libgomp
 ```
 
 Abre **PowerShell** en el proyecto y agrega el compilador a la sesión si MSYS2 está en su ubicación habitual:
